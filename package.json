@@ -1,0 +1,25 @@
+{
+  "name": "netacad-lms-platform",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Next-Generation Role-Based Learning Management System (LMS) inspired by Cisco Networking Academy",
+  "scripts": {
+    "install:all": "npm install --prefix server && npm install --prefix client",
+    "dev": "node scripts/dev.js",
+    "dev:server": "npm run dev --prefix server",
+    "dev:client": "npm run dev --prefix client",
+    "build": "npm run build --prefix client",
+    "start": "npm run start --prefix server",
+    "db:migrate": "npm run db:migrate --prefix server",
+    "db:seed": "npm run db:seed --prefix server",
+    "db:reset": "npm run db:reset --prefix server",
+    "test": "npm run test --prefix server && npm run test --prefix client",
+    "test:server": "npm run test --prefix server",
+    "test:client": "npm run test --prefix client",
+    "lint": "npm run lint --prefix server && npm run lint --prefix client"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
+

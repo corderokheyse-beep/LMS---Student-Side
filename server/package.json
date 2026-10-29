@@ -1,0 +1,44 @@
+{
+  "name": "lms-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Backend REST API for Next-Generation Role-Based LMS",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "node src/server.js",
+    "dev:watch": "node --watch-path=src src/server.js",
+    "start": "node src/server.js",
+    "db:migrate": "node src/utils/runMigrations.js",
+    "db:seed": "node src/utils/runSeeders.js",
+    "db:reset": "node src/utils/resetDatabase.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint src/"
+  },
+  "dependencies": {
+    "argon2": "^0.41.1",
+    "connect-session-sequelize": "^7.1.7",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "express-session": "^1.18.1",
+    "helmet": "^8.0.0",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.12.0",
+    "netacad-lms-platform": "file:..",
+    "nodemailer": "^6.10.0",
+    "pino": "^9.6.0",
+    "sequelize": "^6.37.5",
+    "sqlite3": "^5.1.7",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "eslint": "^9.19.0",
+    "prettier": "^3.4.2",
+    "sequelize-cli": "^6.6.2",
+    "supertest": "^7.0.0",
+    "vitest": "^3.0.5"
+  }
+}

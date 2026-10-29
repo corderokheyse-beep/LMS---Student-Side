@@ -1,0 +1,125 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Aetheria Institute & Networking Academy LMS API",
+    "version": "1.0.0",
+    "description": "RESTful API for the Next-Generation Role-Based Learning Management System (LMS) inspired by Cisco Networking Academy workflows."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:4000/api/v1",
+      "description": "Local Development & Docker API Server"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sessionCookie": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "lms.sid"
+      }
+    }
+  },
+  "security": [
+    {
+      "sessionCookie": []
+    }
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Healthcheck endpoint",
+        "responses": {
+          "200": { "description": "API and Database are healthy" }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "summary": "Authenticate user and establish session",
+        "responses": {
+          "200": { "description": "Authenticated user profile and permissions" },
+          "401": { "description": "Invalid credentials" },
+          "423": { "description": "Account temporarily locked due to failed attempts" }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "summary": "Terminate current user session",
+        "responses": {
+          "200": { "description": "Logged out" }
+        }
+      }
+    },
+    "/auth/me": {
+      "get": {
+        "summary": "Get current session user and permissions",
+        "responses": {
+          "200": { "description": "Current user object" }
+        }
+      }
+    },
+    "/dashboards/super-admin": {
+      "get": {
+        "summary": "Super Administrator telemetry and audit overview",
+        "responses": { "200": { "description": "Dashboard payload" } }
+      }
+    },
+    "/dashboards/academic-admin": {
+      "get": {
+        "summary": "Academic Administrator institutional metrics",
+        "responses": { "200": { "description": "Dashboard payload" } }
+      }
+    },
+    "/dashboards/instructor": {
+      "get": {
+        "summary": "Instructor teaching and grading overview",
+        "responses": { "200": { "description": "Dashboard payload" } }
+      }
+    },
+    "/dashboards/ta": {
+      "get": {
+        "summary": "Teaching Assistant queue and assigned sections",
+        "responses": { "200": { "description": "Dashboard payload" } }
+      }
+    },
+    "/dashboards/student": {
+      "get": {
+        "summary": "Student personalized learning dashboard",
+        "responses": { "200": { "description": "Dashboard payload" } }
+      }
+    },
+    "/iam/users": {
+      "get": { "summary": "List and filter institutional users", "responses": { "200": { "description": "Paginated user list" } } },
+      "post": { "summary": "Create user account", "responses": { "201": { "description": "Created user" } } }
+    },
+    "/academic/courses": {
+      "get": { "summary": "Browse master course catalog", "responses": { "200": { "description": "Course list" } } },
+      "post": { "summary": "Create master course", "responses": { "201": { "description": "Created course" } } }
+    },
+    "/academic/classes": {
+      "get": { "summary": "List class sections", "responses": { "200": { "description": "Class sections" } } },
+      "post": { "summary": "Create class section", "responses": { "201": { "description": "Created class section" } } }
+    },
+    "/content/classes/{classId}/modules": {
+      "get": { "summary": "Get modules, lessons, and student progress for a class", "responses": { "200": { "description": "Modules hierarchy" } } },
+      "post": { "summary": "Create module in class", "responses": { "201": { "description": "Created module" } } }
+    },
+    "/assessments/classes/{classId}/assignments": {
+      "get": { "summary": "List class assignments", "responses": { "200": { "description": "Assignments list" } } },
+      "post": { "summary": "Create class assignment", "responses": { "201": { "description": "Created assignment" } } }
+    },
+    "/assessments/classes/{classId}/exams": {
+      "get": { "summary": "List class quizzes and exams", "responses": { "200": { "description": "Assessments list" } } },
+      "post": { "summary": "Create class quiz or exam", "responses": { "201": { "description": "Created assessment" } } }
+    },
+    "/grading/classes/{classId}/gradebook": {
+      "get": { "summary": "Get weighted class gradebook", "responses": { "200": { "description": "Gradebook matrix" } } }
+    },
+    "/grading/certificates/verify/{code}": {
+      "get": { "summary": "Publicly verify completion certificate authenticity", "responses": { "200": { "description": "Verification result" } } }
+    }
+  }
+}
+
